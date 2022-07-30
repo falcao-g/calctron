@@ -186,15 +186,15 @@ document.addEventListener("keydown", async (event) => {
 	}
 
 	if (event.shiftKey == false && (code == "NumpadEnter" || code == "Enter")) {
-		await import("../crate/pkg").then(async (module) => {
-			const equation = inputVal;
-			const result = await module.evaluate(equation.replace(/π/g, "pi"));
-			input.value = result;
-		});
+		document.querySelector(".eval").click();
 	}
 
-	if (code == "Backspace" || code == "Delete") {
+	if (code == "Delete") {
 		input.value = "";
 		decimalAdded = true;
+	}
+
+	if (code == "Backspace") {
+		input.value = input.value.slice(0, -1);
 	}
 });
