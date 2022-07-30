@@ -4,7 +4,7 @@ Calculadora simples e multiplataforma feita com [electron](https://www.electronj
 
 * Suporte para operações matemáticas simples e também algumas funções científicas como seno, raiz quadrada, exponenciação e mais!
 * Suporta constantes matemáticas comuns: `π (pi)` e `e`.
-* Suporte para teclado.
+* [Suporte para teclado](#suporte-para-teclado).
 
 ## Dev
 
