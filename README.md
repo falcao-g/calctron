@@ -1,5 +1,7 @@
 # calctron
 
+Baseada em: https://github.com/elcalc/elcalc
+
 Calculadora simples e multiplataforma feita com [electron](https://www.electronjs.org/) :electron:
 
 * Suporte para operações matemáticas simples e também algumas funções científicas como seno, raiz quadrada, exponenciação e mais!
