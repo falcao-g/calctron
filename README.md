@@ -1,10 +1,9 @@
 # calctron
 
-Baseada em: https://github.com/elcalc/elcalc
-
 Calculadora simples e multiplataforma feita com [electron](https://www.electronjs.org/) :electron:
 
-* Suporte para operações matemáticas simples e também algumas funções científicas como seno, raiz quadrada, exponenciação e mais!
+* Alterne entre a calculadora e padrão de acordo com a sua necessidade
+* Faça operações até com números imaginários
 * Suporta constantes matemáticas comuns: `π (pi)` e `e`.
 * [Suporte para teclado](#suporte-para-teclado).
 
@@ -35,6 +34,9 @@ Calculadora simples e multiplataforma feita com [electron](https://www.electronj
 | <kbd>Enter</kbd> ou <kbd>Return</kbd> | Resolver a conta |
 | <kbd>Delete</kbd> | Limpar a calculadora |
 | <kbd>Backspace</kbd> | Excluir o último caractere | 
+| <kbd>Alt + c</kbd> | Trocar entre o modo padrão e científico | 
+
+Baseada em: https://github.com/elcalc/elcalc
 
 ### License
 
