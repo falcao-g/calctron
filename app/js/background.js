@@ -21,7 +21,10 @@ for (const key of keys) {
 				btnVal === "log" ||
 				btnVal === "sin" ||
 				btnVal === "cos" ||
-				btnVal === "tan") &&
+				btnVal === "tan" ||
+				btnVal === "n!" ||
+				btnVal === "±" ||
+				btnVal === "¹/ₓ") &&
 			input.value === ""
 		) {
 			input.value = "";
@@ -40,16 +43,20 @@ for (const key of keys) {
 				input.value = result;
 			}
 		} else if (operators.includes(btnVal)) {
-			const lastChar = inputVal[inputVal.length - 1];
+			if (btnVal !== "-") {
+				const lastChar = inputVal[inputVal.length - 1];
 
-			if (inputVal !== "" && !operators.includes(lastChar)) {
-				input.value += btnVal;
-			} else if (inputVal === "" && btnVal === "-") {
-				input.value += btnVal;
-			}
+				if (inputVal !== "" && !operators.includes(lastChar)) {
+					input.value += btnVal;
+				} else if (inputVal === "" && btnVal === "-") {
+					input.value += btnVal;
+				}
 
-			if (operators.includes(lastChar) && inputVal.length > 1) {
-				input.value = inputVal.replace(/.$/, btnVal);
+				if (operators.includes(lastChar) && inputVal.length > 1) {
+					input.value = inputVal.replace(/.$/, btnVal);
+				}
+			} else {
+				input.value += btnVal;
 			}
 		} else if (btnVal === ".") {
 			input.value += btnVal;
@@ -59,6 +66,10 @@ for (const key of keys) {
 			input.value += "^2";
 		} else if (btnVal === "xʸ") {
 			input.value += "^";
+		} else if (btnVal === "10ˣ") {
+			input.value += "10^";
+		} else if (btnVal === "¹/ₓ" && input.value !== "") {
+			input.value = `1/(${input.value})`;
 		} else if (btnVal === "√x" && input.value !== "") {
 			input.value = `sqrt(${input.value})`;
 		} else if (btnVal === "abs" && input.value !== "") {
@@ -73,6 +84,10 @@ for (const key of keys) {
 			input.value = `cos(${input.value})`;
 		} else if (btnVal === "tan" && input.value !== "") {
 			input.value = `tan(${input.value})`;
+		} else if (btnVal === "n!" && input.value !== "") {
+			input.value = `${input.value}!`;
+		} else if (btnVal === "±" && input.value !== "") {
+			input.value = `-${input.value}`;
 		} else {
 			input.value += btnVal;
 		}
@@ -161,15 +176,6 @@ document.addEventListener("keydown", async (event) => {
 		event.shiftKey
 	) {
 		input.value += "%";
-	}
-
-	if (
-		inputVal != "" &&
-		!operators.includes(lastChar) &&
-		code == "Digit6" &&
-		event.shiftKey
-	) {
-		input.value += "^";
 	}
 
 	if (event.shiftKey == false && (code == "NumpadEnter" || code == "Enter")) {
