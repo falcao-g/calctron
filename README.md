@@ -25,6 +25,8 @@ Calculadora simples e multiplataforma feita com [electron](https://www.electronj
  $ npm start
 ```
 
+
+
 ## Suporte para teclado
 
 | Tecla | Descrição |
