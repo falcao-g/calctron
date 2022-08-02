@@ -10,6 +10,8 @@ for (const key of keys) {
 
 		if (btnVal === "C") {
 			input.value = "";
+		} else if (btnVal === "⌫") {
+			input.value = input.value.slice(0, -1);
 		} else if (
 			(btnVal === "√" ||
 				btnVal === "√x" ||
@@ -23,7 +25,6 @@ for (const key of keys) {
 				btnVal === "cos" ||
 				btnVal === "tan" ||
 				btnVal === "n!" ||
-				btnVal === "±" ||
 				btnVal === "¹/ₓ") &&
 			input.value === ""
 		) {
@@ -86,8 +87,6 @@ for (const key of keys) {
 			input.value = `tan(${input.value})`;
 		} else if (btnVal === "n!" && input.value !== "") {
 			input.value = `${input.value}!`;
-		} else if (btnVal === "±" && input.value !== "") {
-			input.value = `-${input.value}`;
 		} else {
 			input.value += btnVal;
 		}
