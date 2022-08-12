@@ -8,7 +8,7 @@ app.on("ready", () => {
 	mainWindow = new BrowserWindow({
 		width: 335,
 		height: 485,
-		resizable: true,
+		resizable: false,
 		maximizable: false,
 		backgroundColor: "#9BA6A7",
 		alwaysOnTop: true,
@@ -24,12 +24,16 @@ app.on("ready", () => {
 	mainWindow.loadURL(`file://${__dirname}/app/index.html`)
 
 	cientifica = false
-	globalShortcut.register("Alt+C", () => {
+	globalShortcut.register("Alt+1", () => {
 		if (cientifica) {
 			mainWindow.setSize(335, 485)
 			mainWindow.loadURL(`file://${__dirname}/app/index.html`)
 			cientifica = false
-		} else {
+		}
+	})
+
+	globalShortcut.register("Alt+2", () => {
+		if (!cientifica) {
 			mainWindow.setSize(410, 485)
 			mainWindow.loadURL(`file://${__dirname}/app/cientifica.html`)
 			cientifica = true

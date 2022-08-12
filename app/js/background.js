@@ -70,7 +70,7 @@ for (const key of keys) {
 		} else if (btnVal === "10ˣ") {
 			input.value += "10^"
 		} else if (btnVal === "¹/ₓ" && input.value !== "") {
-			input.value = `1/(${input.value})`
+			input.value += "1/"
 		} else if (btnVal === "√x" && input.value !== "") {
 			input.value = `sqrt(${input.value})`
 		} else if (btnVal === "abs" && input.value !== "") {
@@ -102,8 +102,6 @@ document.addEventListener("keydown", async (event) => {
 	const inputVal = input.value
 	const lastChar = inputVal[inputVal.length - 1]
 
-	console.log(code)
-
 	if (
 		code.startsWith("Numpad") &&
 		event.getModifierState("NumLock") === false
@@ -114,7 +112,8 @@ document.addEventListener("keydown", async (event) => {
 	if (
 		event.shiftKey == false &&
 		(code.startsWith("Numpad") || code.startsWith("Digit")) &&
-		"0123456789".includes(code.slice(-1))
+		"0123456789".includes(code.slice(-1)) &&
+		!event.getModifierState("AltGraph")
 	) {
 		input.value += code.slice(-1)
 	}
@@ -146,9 +145,21 @@ document.addEventListener("keydown", async (event) => {
 	if (
 		inputVal != "" &&
 		!operators.includes(lastChar) &&
-		(code == "Slash" || code == "IntlRo" || code == "NumpadDivide")
+		(code == "Slash" ||
+			code == "IntlRo" ||
+			code == "NumpadDivide" ||
+			(event.getModifierState("AltGraph") && code == "KeyQ"))
 	) {
 		input.value += "/"
+	}
+
+	if (
+		inputVal != "" &&
+		!operators.includes(lastChar) &&
+		event.getModifierState("AltGraph") &&
+		code == "Digit2"
+	) {
+		input.value += "^2"
 	}
 
 	if (code == "Period" || code == "NumpadDecimal" || code == "NumpadComma") {
@@ -164,8 +175,79 @@ document.addEventListener("keydown", async (event) => {
 		input.value += "^"
 	}
 
+	if (
+		event.shiftKey == true &&
+		inputVal != "" &&
+		!operators.includes(lastChar) &&
+		code == "Digit2"
+	) {
+		input.value = `sqrt(${input.value})`
+	}
+
+	if (
+		event.shiftKey == true &&
+		inputVal != "" &&
+		!operators.includes(lastChar) &&
+		code == "Digit1"
+	) {
+		input.value += "!"
+	}
+
+	if (event.shiftKey == true && code == "Digit9") {
+		input.value += "("
+	}
+
+	if (
+		event.shiftKey == true &&
+		inputVal != "" &&
+		!operators.includes(lastChar) &&
+		code == "Digit0"
+	) {
+		input.value += ")"
+	}
+
+	if (code == "KeyR") {
+		input.value += "1/"
+	}
+
 	if (code == "KeyE") {
 		input.value += "e"
+	}
+
+	if (code == "KeyP") {
+		input.value += "π"
+	}
+
+	if (code == "KeyS") {
+		input.value = `sin(${input.value})`
+	}
+
+	if (code == "KeyT") {
+		input.value = `tan(${input.value})`
+	}
+
+	if (code == "KeyC") {
+		input.value = `cos(${input.value})`
+	}
+
+	if (code == "KeyA") {
+		input.value = `abs(${input.value})`
+	}
+
+	if (code == "KeyL") {
+		input.value = `ln(${input.value})`
+	}
+
+	if (code == "KeyX") {
+		input.value += "10^"
+	}
+
+	if (code == "KeyK") {
+		input.value = `exp(${input.value})`
+	}
+
+	if (code == "KeyI") {
+		input.value += "i"
 	}
 
 	if (
