@@ -72,21 +72,70 @@ for (const key of keys) {
 		} else if (btnVal === "¹/ₓ" && input.value !== "") {
 			input.value += "1/"
 		} else if (btnVal === "√x" && input.value !== "") {
-			input.value = `sqrt(${input.value})`
+			if (getPosition(input.value) === 0) {
+				input.value = `sqrt(${input.value})`
+			} else {
+				input.value = `${input.value.slice(
+					0,
+					getPosition(input.value)
+				)}sqrt(${input.value.slice(getPosition(input.value))})`
+			}
 		} else if (btnVal === "abs" && input.value !== "") {
-			input.value = `abs(${input.value})`
+			if (getPosition(input.value) === 0) {
+				input.value = `abs(${input.value})`
+			} else {
+				input.value = `${input.value.slice(
+					0,
+					getPosition(input.value)
+				)}abs(${input.value.slice(getPosition(input.value))})`
+			}
 		} else if (btnVal === "log" && input.value !== "") {
-			input.value = `ln(${input.value})`
+			if (getPosition(input.value) === 0) {
+				input.value = `log(${input.value})`
+			} else {
+				input.value = `${input.value.slice(
+					0,
+					getPosition(input.value)
+				)}log(${input.value.slice(getPosition(input.value))})`
+			}
 		} else if (btnVal === "exp" && input.value !== "") {
-			input.value = `exp(${input.value})`
+			if (getPosition(input.value) === 0) {
+				input.value = `exp(${input.value})`
+			} else {
+				input.value = `${input.value.slice(
+					0,
+					getPosition(input.value)
+				)}exp(${input.value.slice(getPosition(input.value))})`
+			}
 		} else if (btnVal === "sin" && input.value !== "") {
-			input.value = `sin(${input.value})`
+			if (getPosition(input.value) === 0) {
+				input.value = `sin(${input.value})`
+			} else {
+				input.value = `${input.value.slice(
+					0,
+					getPosition(input.value)
+				)}sin(${input.value.slice(getPosition(input.value))})`
+			}
 		} else if (btnVal === "cos" && input.value !== "") {
-			input.value = `cos(${input.value})`
+			if (getPosition(input.value) === 0) {
+				input.value = `cos(${input.value})`
+			} else {
+				input.value = `${input.value.slice(
+					0,
+					getPosition(input.value)
+				)}cos(${input.value.slice(getPosition(input.value))})`
+			}
 		} else if (btnVal === "tan" && input.value !== "") {
-			input.value = `tan(${input.value})`
+			if (getPosition(input.value) === 0) {
+				input.value = `tan(${input.value})`
+			} else {
+				input.value = `${input.value.slice(
+					0,
+					getPosition(input.value)
+				)}tan(${input.value.slice(getPosition(input.value))})`
+			}
 		} else if (btnVal === "n!" && input.value !== "") {
-			input.value = `${input.value}!`
+			input.value += "!"
 		} else {
 			input.value += btnVal
 		}
@@ -271,3 +320,13 @@ document.addEventListener("keydown", async (event) => {
 		input.value = input.value.slice(0, -1)
 	}
 })
+
+function getPosition(string) {
+	for (let i = string.length; i >= 0; i--) {
+		if (operators.includes(string[i])) {
+			return i + 1
+		} else if (i == 0) {
+			return 0
+		}
+	}
+}
